@@ -1,0 +1,39 @@
+{
+    "exp":1649375259,
+    "iat":1649373279,
+    "iss":"https://peppelinux.github.io/oidc-federation-over-gh-pages",
+    "sub":"https://peppelinux.github.io/oidc-federation-over-gh-pages",
+    "jwks":{
+        "keys":[
+            {
+              "kty": "RSA", 
+              "kid": "6NUnxhhfC8MqskbaOY6lRvNDvxr3zuAYriGCgsrDil8", 
+              "n": "5UwQNGqMUnonDPCmg7k7V70Xm3ifwoaPNCTJ7K3Q1VwA9Seir_7TEs4OB3q_49f76IR3atcuQOjzgDgxHBGEqbWEACgMSaYry-fWOhzgbaQXpU0O3wG-y5deinIPMlbXrHHYK__M33F3Y9X9WKxYdy-CD0YMsN1SlIjGRD17tBbaanmcvaIsDIBkkmlIJdkH2ZPepLLBjK0gY9AXz6I0DwphPcsZnQSoY2GTpVmMcmR_v9ibEPAiVXW1eupe5CJ4cb6KJ2sOghFNK7nktyYqWvrl82zZt6AK6WAuKft2tmbXk8UCfl0HRmVt5BcuRYnX21rtpsJcVv0aAX2v1uhC_w", 
+              "e": "AQAB"
+            }
+        ]
+    },
+    "metadata":{
+        "federation_entity": {
+            "contacts":[
+                "demarcog83@gmail.com"
+            ],
+            "federation_fetch_endpoint": "https://peppelinux.github.io/oidc-federation-over-gh-pages/fetch/",
+            "federation_resolve_endpoint": "https://peppelinux.github.io/oidc-federation-over-gh-pages/resolve/",
+            "federation_list_endpoint": "https://peppelinux.github.io/oidc-federation-over-gh-pages/list/",
+            "homepage_uri": "https://peppelinux.github.io/oidc-federation-over-gh-pages",
+            "name": "Poor man's OIDC Trust Anchor"
+        },
+         "trust_mark_issuer": {
+            "federation_status_endpoint": "https://peppelinux.github.io/oidc-federation-over-gh-pages/trust_mark_status/"
+        }
+    },
+    "trust_marks_issuers":{
+        "https://peppelinux.github.io/oidc-federation-over-gh-pages/openid_relying_party/public/":[
+            "https://peppelinux.github.io/oidc-federation-over-gh-pages"
+        ]
+    },
+    "constraints":{
+        "max_path_length":1
+    }
+}
