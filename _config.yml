@@ -1,1 +1,5 @@
-include: [".well-known", "fetch"]
+encoding: utf-8
+
+include: 
+    - .well-known
+    - fetch
