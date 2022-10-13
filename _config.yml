@@ -2,4 +2,4 @@ encoding: utf-8
 
 include: 
     - .well-known
-    - fetch
+    - entity-statements
