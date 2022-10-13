@@ -1,8 +1,8 @@
 {
     "exp":1649375259,
     "iat":1649373279,
-    "iss":"https://peppelinux.github.io",
-    "sub":"https://peppelinux.github.io",
+    "iss":"https://peppelinux.github.io/oidc-federation-over-gh-pages",
+    "sub":"https://peppelinux.github.io/oidc-federation-over-gh-pages",
     "jwks":{
         "keys":[
             {
@@ -18,19 +18,19 @@
             "contacts":[
                 "demarcog83@gmail.com"
             ],
-            "federation_fetch_endpoint": "https://peppelinux.github.io/fetch/",
-            "federation_resolve_endpoint": "https://peppelinux.github.io/resolve/",
-            "federation_list_endpoint": "https://peppelinux.github.io/list/",
-            "homepage_uri": "https://peppelinux.github.io/",
+            "federation_fetch_endpoint": "https://peppelinux.github.io/oidc-federation-over-gh-pages/fetch/",
+            "federation_resolve_endpoint": "https://peppelinux.github.io/oidc-federation-over-gh-pages/resolve/",
+            "federation_list_endpoint": "https://peppelinux.github.io/oidc-federation-over-gh-pages/list/",
+            "homepage_uri": "https://peppelinux.github.io/oidc-federation-over-gh-pages",
             "name": "Poor man's OIDC Trust Anchor"
         },
          "trust_mark_issuer": {
-            "federation_status_endpoint": "https://peppelinux.github.io/trust_mark_status/"
+            "federation_status_endpoint": "https://peppelinux.github.io/oidc-federation-over-gh-pages/trust_mark_status/"
         }
     },
     "trust_marks_issuers":{
-        "https://peppelinux.github.io/openid_relying_party/public/":[
-            "https://peppelinux.github.io"
+        "https://peppelinux.github.io/oidc-federation-over-gh-pages/openid_relying_party/public/":[
+            "https://peppelinux.github.io/oidc-federation-over-gh-pages"
         ]
     },
     "constraints":{
