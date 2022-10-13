@@ -1,2 +1,3 @@
-# oidc-federation-over-gh-pages
+# OpenID Connect Federation Trust Anchor over Github Pages
+
 PoC of a OpenID Federation Trust Anchor that works entirely on github pages
