@@ -1,0 +1,4 @@
+cryptojwt>=1.6.1
+pydantic>=1.8.2
+requests
+pydantic[email]
