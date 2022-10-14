@@ -1,0 +1,6 @@
+encoding: utf-8
+
+
+include: 
+    - federation/.well-known
+    - federation/entity-statements
