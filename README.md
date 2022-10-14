@@ -1,30 +1,57 @@
 # OpenID Connect Federation over Github Pages
 
-PoC of a OpenID Federation Trust Anchor that works entirely on github pages.
+PoC of a OpenID Federation Trust Anchor that works entirely on Github Pages.
 
 
 ## Intro
 
-This project propose a deploy mechanism on CDN, for the Trust Anchor's Federation endpoints.
+This project propose a deploy mechanism on CDN for the Trust Anchor's Federation endpoints.
 
-The Federation Trust Anchor is an An Entity that represents a trusted third party, needed to build a Federation,
+The Federation Trust Anchor is an An Entity that represents the trusted third party, needed to build a Federation,
 as defined in [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).
 
 ## General  Architecture
 <img src="https://user-images.githubusercontent.com/1297620/195827852-014e6a15-37d0-4260-8a5a-16e3c1e67cd4.png" alt="" data-canonical-src="https://user-images.githubusercontent.com/1297620/195827852-014e6a15-37d0-4260-8a5a-16e3c1e67cd4.png" width="320"/>
 
-1. The git repository implements CI and CD to validates and publish the contents in one or more CDNs. The Federation private key is stored in a environmental secret. This can only be deleted or updated.
-2. A pool of HTTPd Frontends resolved to a single hostname make reverse proxy and rewrite rules for the Federation endpoints that requires URL parameters (like the Fetch endpoint for the retrieval of the entity statements). The HTTP Frontends can be hosted on different organizations.
+1. The git repository implements CI and CD to validate and publish the contents in one or more CDNs. The Federation private key is stored in a GitHub secret. This can only be deleted or updated.
+2. A pool of HTTPd Frontends resolved to a single hostname make reverse proxy and rewrite rules for the Federation endpoints that require URL parameters, like the Fetch endpoint for the retrieval of the entity statements. The HTTP Frontends can be hosted on different organizations and these should only serve the Fetch endpoint (the TA entity configuration should be always taken directly from the CDN, without any intermediary).
 
 
 ## General workflow
 
 Every time a commit occur in the main branch,
 a GitHub action uses the scripts configured in `bin/` 
-to update the storage of the TA and deploy it on GitHub page.
+to update the storage of the TA and deploy its content on GitHub Page.
 
 The branch for the github page deployment is `gh-trust-anchor`.
 
+## Onboarding
+
+The OnBoarding should be done with a traditional review process, made by a team, 
+on the PRs that want to update the master branch.
+The master branch should be protected with a quorum of reviewers.
+
+The git commits on [federation/descendants](federation/descendants) must create a
+JSON file, containing a JSON Objects with at least three attributes as given in the example below:
+
+````
+{
+    "entity_id": "https://hostna.me",
+    "jwks": { "keys": [.. leaf's entity configuration jwks ...]},
+    "leaf_entity_types": ["openid_provider"]
+
+}
+````
+The name of the file must be the url encoding of the `entity_id` value.
+
+The validation CI on the pull requests should:
+
+1. fetch the leaf's entity configuration from the URL given by `entity_id`.
+2. validate the signature of the leaf's entity configuration using one of the keys given in `jwks`.
+3. validate the leaf's entity configuration, following the given json-schema and the entity types given in the commit.
+
+The CI would let the reviewers to approve the pull request and merge it on the main branch.
+A CI action should be triggered to create and deploy on CDN the entity statements related to the onboarded Leaf.
 
 ## TA's endpoints
 
@@ -35,9 +62,9 @@ is the unsigned Entity Configuration of the Trust Anchor. Every time a commit oc
 a GitHub action uses `bin/create_jwt.py` to parse `openid-federation.json`,
 update the claims `iat`, `exp` and `jwks` and then create a signed JWT.
 
-the private key used for signature operations is stored in the github secrets.
+The private key used for signature operations is stored in the github secrets.
 
-the Entity Configuration once deployed will be available at 
+The Entity Configuration once deployed will be available at 
 [this url](https://peppelinux.github.io/oidc-federation-over-gh-pages/.well-known/openid-federation).
 
 
@@ -46,23 +73,12 @@ the Entity Configuration once deployed will be available at
 > TODO
 
 The file [federation/list.json](federation/list.json) contains JSON array with all the 
-URLs of the participants. Every time this file is edited with a git commit,
-the scripts in the `bin/` directory create, update or remove, 
-the Entity Statements of the participants.
-
-For doing that the action scripts fetches the Entity Configuration of each new/modified participant,
-validate it, and then stores the signed entity statements related to this.
-
-The commit on [federation/list.json](federation/list.json) should be coupled with the public jwk that
-would match to the one published in the participants Entity Configuration.
-
-The result will contain only the verified Entities for which the 
-Entity Statement have been produced.
-
+URLs of the participants. Every time an onboarding action is merged in the main branch, like create, update or delete, 
+this file is edited by the scripts configured in the `bin/` directory.
 
 ## Entity Statements
 
-> TODO
+> TODO: see onboarding.
 
 
 ### Open Points
