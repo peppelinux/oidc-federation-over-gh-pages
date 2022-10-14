@@ -71,7 +71,7 @@ The Entity Configuration once deployed will be available at
 [this url](https://peppelinux.github.io/oidc-federation-over-gh-pages/.well-known/openid-federation).
 
 
-## TA's Listing
+#### TA's Listing
 
 > TODO
 
@@ -79,12 +79,12 @@ The file [federation/list.json](federation/list.json) contains JSON array with a
 URLs of the participants. Every time an onboarding action is merged in the main branch, like create, update or delete, 
 this file is edited by the scripts configured in the `bin/` directory.
 
-## Entity Statements
+#### Entity Statements
 
 > TODO: see onboarding.
 
 
-### Open Points
+## Open Points
 
 To be converted in issues?
 
