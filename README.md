@@ -5,13 +5,19 @@ PoC of a OpenID Federation Trust Anchor that works entirely on github pages.
 
 ## Intro
 
-This project propose a deploy mechanism for the Federation endpoints of Trust Anchor.
+This project propose a deploy mechanism on CDN, for the Trust Anchor's Federation endpoints.
 
 The Federation Trust Anchor is an An Entity that represents a trusted third party, needed to build a Federation,
 as defined in [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).
 
+## General  Architecture
+<img src="https://user-images.githubusercontent.com/1297620/195827852-014e6a15-37d0-4260-8a5a-16e3c1e67cd4.png" alt="" data-canonical-src="https://user-images.githubusercontent.com/1297620/195827852-014e6a15-37d0-4260-8a5a-16e3c1e67cd4.png" width="320"/>
 
-## How does it work
+1. The git repository implements CI and CD to validates and publish the contents in one or more CDNs. The Federation private key is stored in a environmental secret. This can only be deleted or updated.
+2. A pool of HTTPd Frontends resolved to a single hostname make reverse proxy and rewrite rules for the Federation endpoints that requires URL parameters (like the Fetch endpoint for the retrieval of the entity statements). The HTTP Frontends can be hosted on different organizations.
+
+
+## General workflow
 
 Every time a commit occur in the main branch,
 a GitHub action uses the scripts configured in `bin/` 
