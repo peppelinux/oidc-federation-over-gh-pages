@@ -14,7 +14,10 @@ as defined in [OpenID Connect Federation 1.0](https://openid.net/specs/openid-co
 <img src="https://user-images.githubusercontent.com/1297620/195827852-014e6a15-37d0-4260-8a5a-16e3c1e67cd4.png" alt="" data-canonical-src="https://user-images.githubusercontent.com/1297620/195827852-014e6a15-37d0-4260-8a5a-16e3c1e67cd4.png" width="320"/>
 
 1. The git repository implements CI and CD to validate and publish the contents in one or more CDNs. The Federation private key is stored in a GitHub secret. This can only be deleted or updated.
-2. A pool of HTTPd Frontends resolved to a single hostname make reverse proxy and rewrite rules for the Federation endpoints that require URL parameters, like the Fetch endpoint for the retrieval of the entity statements. The HTTP Frontends can be hosted on different organizations and these should only serve the Fetch endpoint (the TA entity configuration should be always taken directly from the CDN, without any intermediary).
+2. A pool of HTTPd Frontends resolved to a single hostname make reverse proxy and rewrite rules for the Federation endpoints that require URL parameters, like the Fetch endpoint for the retrieval of the entity statements. 
+
+
+> Implementation note: The HTTP Frontends can be hosted on different organizations and these should only serve the Fetch endpoint. The TA's entity configuration should be always taken directly from the CDN, without any intermediary. In this way the intermediaris that manages the frontend can't change the TA's entity configuration, and they can only serve the entity statements issued and signed by the TA's.
 
 
 ## General workflow
