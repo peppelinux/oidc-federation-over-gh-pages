@@ -94,10 +94,8 @@ To be converted in issues?
 - this instead works, but it's not compliant: 
         https://peppelinux.github.io/oidc-federation-over-gh-pages/entity-statements/fetch%3Fsub%3Dhttps%253A%252F%252Ftrust.me
 
-- solution: put an nginx frontend that does the rewrite rules
+- solution: put an nginx frontend that does reverse proxy
   - requirements: keep entity configuration updated with the FQDN of the frontend
-
-- the actions should be scheduled, see [schedule](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule).
 
 
 ## Local setup
